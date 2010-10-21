@@ -42,6 +42,11 @@ function ctoolscontentboxes_boxes_plugins() {
       'path' => $path,
     ),
   );
+
+  // Truncate the name of the plugin because the delta column in the blocks
+  // table is limited to 32 characters. Boxes inserts a block for each plugin,
+  // (boxes_add__ctools_content_contac) and longer deltas will cause SQL
+  // duplicate key errors.
   $info['ctools_content_contac'] = array(
     'title' => 'Contact form',
     'handler' => array(
