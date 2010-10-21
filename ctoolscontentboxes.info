@@ -1,0 +1,5 @@
+; $Id$
+name = "Chaos tools content boxes"
+description = "Plugins for Boxes to render Ctools content types."
+core = "6.x"
+dependencies[] = "boxes"

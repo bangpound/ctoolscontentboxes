@@ -1,0 +1,55 @@
+<?php
+// $Id$
+
+/**
+ * Implementation of hook_ctools_plugin_api().
+ */
+function ctoolscontentboxes_ctools_plugin_api($module, $api) {
+  if ($module == 'boxes' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implementation of hook_boxes_plugins().
+ */
+function ctoolscontentboxes_boxes_plugins() {
+  $info = array();
+  $path = drupal_get_path('module', 'ctoolscontentboxes') .'/plugins';
+  $info['ctools_content'] = array(
+    'handler' => array(
+      'parent' => 'box',
+      'class' => 'ctoolscontentboxes',
+      'file' => 'ctoolscontentboxes.inc',
+      'path' => $path,
+    ),
+  );
+  $info['ctools_content_node'] = array(
+    'title' => 'Node',
+    'handler' => array(
+      'parent' => 'ctools_content',
+      'class' => 'ctoolscontentboxes_node',
+      'file' => 'ctoolscontentboxes_node.inc',
+      'path' => $path,
+    ),
+  );
+  $info['ctools_content_block'] = array(
+    'title' => 'Block',
+    'handler' => array(
+      'parent' => 'ctools_content',
+      'class' => 'ctoolscontentboxes_block',
+      'file' => 'ctoolscontentboxes_block.inc',
+      'path' => $path,
+    ),
+  );
+  $info['ctools_content_contac'] = array(
+    'title' => 'Contact form',
+    'handler' => array(
+      'parent' => 'ctools_content',
+      'class' => 'ctoolscontentboxes_contact',
+      'file' => 'ctoolscontentboxes_contact.inc',
+      'path' => $path,
+    ),
+  );
+  return $info;
+}
