@@ -5,7 +5,6 @@
  * Base class for all ctools content types.
  */
 abstract class ctoolscontentboxes extends boxes_box {
-  public $content_type;
   public $plugin;
 
   /**
@@ -32,7 +31,6 @@ abstract class ctoolscontentboxes extends boxes_box {
    * Implementation of boxes_content::options_form().
    */
   public function options_form() {
-    $plugin = $this->plugin;
     $op = $this->new ? 'add' : 'edit';
 
     $form_state = array(
@@ -72,11 +70,11 @@ abstract class ctoolscontentboxes extends boxes_box {
     }
 
     // Populate the form array.
-    $plugin[$op .' form']($form, $form_state);
+    $this->plugin[$op .' form']($form, $form_state);
 
     // Add the form validator function as an element validator.
-    if (function_exists('boxes_'. $plugin[$op .' form'] .'_validate')) {
-      $form['#element_validate'][] = 'boxes_'. $plugin[$op .' form'] .'_validate';
+    if (function_exists('boxes_'. $this->plugin[$op .' form'] .'_validate')) {
+      $form['#element_validate'][] = 'boxes_'. $this->plugin[$op .' form'] .'_validate';
     }
     return $form;
   }
@@ -85,10 +83,7 @@ abstract class ctoolscontentboxes extends boxes_box {
    * Implementation of boxes_content::options_form().
    */
   public function render() {
-    $type = $this->plugin['name'];
-    $conf = $this->options;
-
-    $content = ctools_content_render($type, $this->options['subtype'], $conf);
+    $content = ctools_content_render($this->plugin['name'], $this->options['subtype'], $this->options);
     $title = isset($this->title) ? check_plain($this->title) : NULL;
     return array(
       'delta' => $this->delta, // Crucial.
