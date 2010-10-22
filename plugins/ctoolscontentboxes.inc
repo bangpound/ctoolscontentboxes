@@ -80,7 +80,7 @@ abstract class ctoolscontentboxes extends boxes_box {
   }
 
   /**
-   * Implementation of boxes_content::options_form().
+   * Implementation of boxes_content::render().
    */
   public function render() {
     $content = ctools_content_render($this->plugin['name'], $this->options['subtype'], $this->options);
