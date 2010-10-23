@@ -34,7 +34,7 @@ function ctoolscontentboxes_boxes_plugins() {
     ),
   );
   $info['ctools_content_block'] = array(
-    'title' => 'Block',
+    'title' => 'Cloned block',
     'handler' => array(
       'parent' => 'ctools_content',
       'class' => 'ctoolscontentboxes_block',
