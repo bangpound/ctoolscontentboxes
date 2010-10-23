@@ -11,9 +11,9 @@ abstract class ctoolscontentboxes extends boxes_box {
    * Implementation of boxes_content::__construct().
    */
   protected function __construct($content_type) {
-    parent::__construct();
     ctools_include('content');
     $this->plugin = ctools_get_content_type($content_type);
+    parent::__construct();
   }
 
   /**
