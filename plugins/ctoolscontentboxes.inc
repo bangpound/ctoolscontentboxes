@@ -91,4 +91,3 @@ abstract class ctoolscontentboxes extends boxes_box {
     );
   }
 }
-
