@@ -20,11 +20,9 @@ abstract class ctoolscontentboxes extends boxes_box {
    * Implementation of boxes_content::options_defaults().
    */
   public function options_defaults() {
-    $defaults = array('subtype' => NULL);
-    if (empty($this->plugin['defaults'])) {
-      return $defaults;
-    }
-    return array_merge($this->plugin['defaults'], $defaults);
+    $defaults = ctools_content_get_defaults($this->plugin, $this->options['subtype']);
+    $defaults['subtype'] = NULL;
+    return $defaults;
   }
 
   /**
